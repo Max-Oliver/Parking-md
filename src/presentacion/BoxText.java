@@ -4,30 +4,43 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.*;
 
+import presentacion.Estilos;//estilo de los componentes visuales
+
 public class BoxText {
     private JPanel pnContenedor;
     private JTextField txtCajaTexto;
     private JLabel lbError;
     private JLabel lbInfo;
+    public Boolean requerido;
 
     public void Crear(String descripcion, String textoError) {
+        Estilos estilos = new Estilos();
+
+        //Asigno valores iniciales
+        this.requerido = true;
+       
+        //Creamos graficamente los componentes
         this.pnContenedor = new JPanel();
-        this.pnContenedor.setSize(new Dimension(140, 50));
-        this.pnContenedor.setBackground(new Color(200, 200, 200));
+        this.pnContenedor.setSize(new Dimension(150, 70));
+        this.pnContenedor.setBackground(new Color(255, 255, 255));
+        this.pnContenedor.setBorder(null);
         
-        this.lbInfo = this.MyStyleLabel(descripcion);
+        this.lbInfo = estilos.MyStyleJLabel(descripcion);
         this.pnContenedor.add(this.lbInfo);
         this.lbInfo.setLocation(0, 0);
 
-        this.txtCajaTexto = new JTextField();
-        this.txtCajaTexto.setSize(new Dimension(100, 20));
-        this.txtCajaTexto.setBackground(new Color(255, 255, 255));
+        this.txtCajaTexto = estilos.MyStyleJTextField();
         this.pnContenedor.add(this.txtCajaTexto);
-        this.txtCajaTexto.setLocation(0, 12);
+        this.txtCajaTexto.setLocation(0, 25);
         
-        this.lbError = this.MyStyleLabel(textoError);
+        this.lbError = estilos.MyStyleJLabel(" "+textoError);
+        this.lbError.setBackground(new java.awt.Color(253, 75, 92));
+        this.lbError.setForeground(new java.awt.Color(1, 1, 1));
+        this.lbError.setOpaque(true);
+        
+        //this.lbError.setVisible(false);//oculto el label error
         this.pnContenedor.add(this.lbError);
-        this.lbError.setLocation(0, 34);
+        this.lbError.setLocation(0, 45);
         
         //codigo para establecer el posicionamiento de los objeto
         javax.swing.GroupLayout pnContenedorLayout = new javax.swing.GroupLayout(pnContenedor);
@@ -62,13 +75,5 @@ public class BoxText {
     public void setTextoError(String texto)
     {
         this.lbError.setText(texto);
-    }
-
-    private JLabel MyStyleLabel(String texto) {
-        JLabel label = new JLabel();
-        label.setText(texto);
-        label.setBackground(new Color(255, 255, 255));
-        label.setSize(new Dimension(140, 10));
-        return label;
     }
 }

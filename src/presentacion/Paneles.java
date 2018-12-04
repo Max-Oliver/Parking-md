@@ -4,13 +4,15 @@ import java.awt.Dimension;
 import javax.swing.*;
 
 import presentacion.BoxText;
+import presentacion.Estilos;
 
 public class Paneles
 {
     public void ComponentesDatosCliente(JPanel contenedor)
     {   
-        //componentes internos
-        
+        Estilos estilos = new Estilos();
+        //componentes internos del menu cliente
+        //Aclaracion : Aqui se comentan los boxtext no requeridos
         BoxText caja1 = new BoxText();
         caja1.Crear("documento", "campo requerido");
         BoxText caja2 = new BoxText();
@@ -18,6 +20,11 @@ public class Paneles
         
         contenedor.add(caja1.contenedor());
         contenedor.add(caja2.contenedor());
+        
+        JButton btnAltaCliente = estilos.MyStyleJButton("crear cliente");
+        btnAltaCliente.setLocation(0, 0);
+        contenedor.add(btnAltaCliente);
+        
         
         this.AlinearContenido(contenedor, 10, 10);
     }
@@ -30,7 +37,7 @@ public class Paneles
         for(int i=0; i<objs.length;i++)
         { 
             objs[i].setLocation(posX, posY);
-            posY = (objs[i].size().height + posY) + 10;//ultimo numero es la distancia entre objs
+            posY = (objs[i].size().height + posY) + 2;//ultimo numero es la distancia entre objs
         }
     } 
 }
