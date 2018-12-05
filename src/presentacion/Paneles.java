@@ -21,10 +21,11 @@ public class Paneles
         contenedor.add(caja1.contenedor());
         contenedor.add(caja2.contenedor());
         
+        /*
         JButton btnAltaCliente = estilos.MyStyleJButton("crear cliente");
         btnAltaCliente.setLocation(0, 0);
         contenedor.add(btnAltaCliente);
-        
+        */
         
         this.AlinearContenido(contenedor, 10, 10);
     }

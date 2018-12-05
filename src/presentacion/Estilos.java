@@ -26,11 +26,7 @@ public class Estilos {
         button.setSize(new Dimension(150, 20));
         return button;
     }
-    public JPanel MyStyleJPanel()
-    {
-        JPanel panel = new JPanel();
-        return panel;   
-    }
+   
     public JLabel MyStyleJLabel(String texto)
     {
         JLabel label = new JLabel();
@@ -41,6 +37,12 @@ public class Estilos {
         label.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         label.setSize(new Dimension(150,25));
         return label;   
+    }
+    
+    public JPanel MyStyleJPanel()
+    {
+        JPanel panel = new JPanel();
+        return panel;   
     }
     
 }

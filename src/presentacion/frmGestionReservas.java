@@ -1,16 +1,21 @@
 package presentacion;
+
+import java.sql.PreparedStatement;
 import presentacion.Paneles;
 
-public class frmGestionReservas extends javax.swing.JFrame 
-{
-    public frmGestionReservas() 
-    {
+import negocios.*;
+
+public class frmGestionReservas extends javax.swing.JFrame {
+
+    private negocios.NegocioCliente negociosCliente;
+
+    public frmGestionReservas() {
         initComponents();
-        
+
         Paneles Paneles = new Paneles();
         Paneles.ComponentesDatosCliente(pnDatosCliente);
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -18,7 +23,7 @@ public class frmGestionReservas extends javax.swing.JFrame
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pnCliente = new javax.swing.JPanel();
         pnDatosCliente = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnAltaCliente = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -35,21 +40,32 @@ public class frmGestionReservas extends javax.swing.JFrame
         pnDatosCliente.setBackground(new java.awt.Color(254, 254, 254));
         pnDatosCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btnAltaCliente.setBackground(new java.awt.Color(255, 255, 255));
+        btnAltaCliente.setForeground(new java.awt.Color(1, 1, 1));
+        btnAltaCliente.setText("alta cliente");
+        btnAltaCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnAltaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAltaClienteMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnDatosClienteLayout = new javax.swing.GroupLayout(pnDatosCliente);
         pnDatosCliente.setLayout(pnDatosClienteLayout);
         pnDatosClienteLayout.setHorizontalGroup(
             pnDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
+            .addGroup(pnDatosClienteLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnAltaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         pnDatosClienteLayout.setVerticalGroup(
             pnDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnDatosClienteLayout.createSequentialGroup()
+                .addContainerGap(355, Short.MAX_VALUE)
+                .addComponent(btnAltaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setForeground(new java.awt.Color(1, 1, 1));
-        jButton1.setText("alta cliente");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout pnClienteLayout = new javax.swing.GroupLayout(pnCliente);
         pnCliente.setLayout(pnClienteLayout);
@@ -58,21 +74,14 @@ public class frmGestionReservas extends javax.swing.JFrame
             .addGroup(pnClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(544, Short.MAX_VALUE))
         );
         pnClienteLayout.setVerticalGroup(
             pnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnClienteLayout.createSequentialGroup()
-                .addGroup(pnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnClienteLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnClienteLayout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnClienteLayout.createSequentialGroup()
+                .addContainerGap(90, Short.MAX_VALUE)
+                .addComponent(pnDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         jTabbedPane1.addTab("cliente", pnCliente);
@@ -87,7 +96,7 @@ public class frmGestionReservas extends javax.swing.JFrame
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 447, Short.MAX_VALUE)
+            .addGap(0, 516, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("reservas", jPanel2);
@@ -100,10 +109,7 @@ public class frmGestionReservas extends javax.swing.JFrame
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,19 +128,20 @@ public class frmGestionReservas extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) 
-    {
-        java.awt.EventQueue.invokeLater(new Runnable() 
-        {
-            public void run() 
-            { 
-                new frmGestionReservas().setVisible(true);   
+    private void btnAltaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaClienteMouseClicked
+        this.negociosCliente.AltaCliente();
+    }//GEN-LAST:event_btnAltaClienteMouseClicked
+
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new frmGestionReservas().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAltaCliente;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
