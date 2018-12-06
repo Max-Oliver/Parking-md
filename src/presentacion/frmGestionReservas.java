@@ -7,13 +7,13 @@ import negocios.*;
 
 public class frmGestionReservas extends javax.swing.JFrame {
 
-    private negocios.NegocioCliente negociosCliente;
+    private negocios.NegocioCliente negociosCliente = new NegocioCliente();
+    private Paneles paneles = new Paneles();
 
     public frmGestionReservas() {
         initComponents();
-
-        Paneles Paneles = new Paneles();
-        Paneles.ComponentesDatosCliente(pnDatosCliente);
+        //cargo los campos y elementos del swing
+        this.paneles.ComponentesDatosCliente(pnDatosCliente);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -129,7 +129,10 @@ public class frmGestionReservas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAltaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaClienteMouseClicked
-        this.negociosCliente.AltaCliente();
+        paneles.hideErrors(this.paneles.getListBoxsCliente());
+        if (paneles.ValidarCampos(paneles.getListBoxsCliente())) {
+            this.negociosCliente.AltaCliente(this.paneles.getlistAssocBoxsCliente());
+        }  
     }//GEN-LAST:event_btnAltaClienteMouseClicked
 
     public static void main(String args[]) {

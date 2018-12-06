@@ -1,13 +1,14 @@
 package persistencias;
 
 import java.sql.*;
+import configuracion.ConfBaseDatos; //aqui obtengo las variables
 
 public class Conexion {
-
-    private String user = "root";
-    private String passwd = "1234";
-    private String database = "jdbc:mysql://localhost/parkingdb";
-    private String driver = "com.mysql.jdbc.Driver";
+    ConfBaseDatos confBD = new ConfBaseDatos();
+    private String user     = confBD.getUser();
+    private String passwd   = confBD.getPassword();
+    private String database = confBD.getDatabase();
+    private String driver   = confBD.getDriver();
     Connection connect = null;
 
     public Conexion() {

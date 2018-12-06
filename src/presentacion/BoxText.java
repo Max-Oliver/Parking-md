@@ -16,7 +16,7 @@ public class BoxText {
     public void Crear(String descripcion, String textoError) {
         Estilos estilos = new Estilos();
 
-        //Asigno valores iniciales
+        //Asigno valores iniciales (por defecto es true)
         this.requerido = true;
        
         //Creamos graficamente los componentes
@@ -36,9 +36,8 @@ public class BoxText {
         this.lbError = estilos.MyStyleJLabel(" "+textoError);
         this.lbError.setBackground(new java.awt.Color(253, 75, 92));
         this.lbError.setForeground(new java.awt.Color(1, 1, 1));
-        this.lbError.setOpaque(true);
-        
-        //this.lbError.setVisible(false);//oculto el label error
+        this.lbError.setOpaque(true); 
+        this.lbError.setVisible(false);//oculto el label error
         this.pnContenedor.add(this.lbError);
         this.lbError.setLocation(0, 45);
         
@@ -65,6 +64,31 @@ public class BoxText {
 
     public JPanel contenedor() {
         return this.pnContenedor;
+    }
+    
+    public String Value()
+    {
+        return this.CajaTexto().getText();
+    }
+    
+    public void showError()
+    {
+        this.lbError.setVisible(true);
+    }
+    
+    public void hideError()
+    {
+        this.lbError.setVisible(false);
+    }
+    
+    public Boolean isRequerido()
+    {
+        return this.requerido;
+    }
+    
+    public void setRequerido(Boolean valor)
+    {
+        this.requerido = valor;
     }
     
     public void setDescripcion(String texto)
