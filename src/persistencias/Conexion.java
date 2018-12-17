@@ -9,12 +9,15 @@ public class Conexion {
     private String passwd   = confBD.getPassword();
     private String database = confBD.getDatabase();
     private String driver   = confBD.getDriver();
-    Connection connect = null;
+    public Connection connect;
+    
 
-    public Conexion() {
+    public Conexion() 
+    {
         try {
             Class.forName(driver);
             connect = DriverManager.getConnection(database, user, passwd);
+            
             if (connect != null) {
                 System.out.println("Corrrecto");
             }
@@ -28,6 +31,7 @@ public class Conexion {
     }
 
     public void Insert(String sql) {
+        System.out.println("Init Insert Method - "+sql);
         try {
             Conexion conn = new Conexion();
             PreparedStatement PS;
@@ -35,7 +39,7 @@ public class Conexion {
             PS.executeUpdate();
             PS.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error en sql "+sql+"-"+e.getMessage());
         }
     }
     
