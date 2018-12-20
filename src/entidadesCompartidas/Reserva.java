@@ -9,16 +9,18 @@ public class Reserva
     private String carType;
     private String carRegistration;
     private Boolean paymentMark;
+    private Boolean isNight;
     private Boolean state;
     private Timestamp startDate;
     
     
     public Reserva(
-            String document, String carType, String carRegistration, Boolean paymentMark)
+            String document, String carType, String carRegistration,Boolean isNight, Boolean paymentMark)
     {
         this.document = document;
         this.carType = carType;
         this.carRegistration = carRegistration;
+        this.isNight = isNight;
         this.paymentMark = paymentMark;
         this.state = true;
         
@@ -41,6 +43,11 @@ public class Reserva
     public String CarRegistration()
     {
         return this.carRegistration;
+    }
+    
+    public Boolean isNight()
+    {
+        return this.isNight;
     }
     
     public Boolean PaymentMark()

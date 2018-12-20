@@ -36,6 +36,8 @@ public class frmGestionReservas extends javax.swing.JFrame {
         carTypeBI2.setValue(new String[]{"auto", "camioneta", "moto"});
         
         reservationHour = new InputBox[]{carRegistrationBI1, carTypeBI1, documentBI1, paymentMarkBI1};
+        reservationMonth = new InputBox[]{carRegistrationBI2, carTypeBI2, documentBI2, reservationTurnBI,paymentMarkBI2};
+        onlyWashed = new InputBox[]{carTypeBI};
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -670,11 +672,7 @@ public class frmGestionReservas extends javax.swing.JFrame {
     }//GEN-LAST:event_reservationHourBTNActionPerformed
 
     private void justWashedBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_justWashedBTNMouseClicked
-        Panels.hideErrors(this.onlyWashed);
-        if (Panels.ValidateInputBoxs(this.onlyWashed)) 
-        {
-            //this.negociosCliente.NewReservationMounth(this.ReservationMonthAssoc);
-        }  
+       EventsFrame.NewWashed(this.onlyWashed);
     }//GEN-LAST:event_justWashedBTNMouseClicked
 
     private void justWashedBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_justWashedBTNActionPerformed
@@ -682,12 +680,7 @@ public class frmGestionReservas extends javax.swing.JFrame {
     }//GEN-LAST:event_justWashedBTNActionPerformed
 
     private void reservationMounthBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reservationMounthBTNMouseClicked
-        // TODO add your handling code here:
-        Panels.hideErrors(this.reservationMonth);
-        if (Panels.ValidateInputBoxs(this.reservationMonth)) 
-        {
-            //this.negociosCliente.NewReservationMounth(this.ReservationMonthAssoc);
-        }
+         EventsFrame.NewReservationMounth(this.reservationMonth);
     }//GEN-LAST:event_reservationMounthBTNMouseClicked
 
     private void reservationMounthBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservationMounthBTNActionPerformed

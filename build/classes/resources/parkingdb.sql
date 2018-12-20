@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-12-2018 a las 01:35:24
+-- Tiempo de generación: 20-12-2018 a las 15:15:25
 -- Versión del servidor: 5.7.24-0ubuntu0.16.04.1
 -- Versión de PHP: 7.0.32-0ubuntu0.16.04.1
 
@@ -68,14 +68,27 @@ CREATE TABLE `realizaReserva` (
 
 CREATE TABLE `reserva` (
   `idReserva` int(11) NOT NULL,
-  `idCliente` int(11) NOT NULL,
-  `idVehiculo` int(11) NOT NULL,
-  `fechaInicio` datetime NOT NULL,
-  `fechaFin` datetime NOT NULL,
-  `costo` int(11) NOT NULL,
-  `finalizada` tinyint(1) NOT NULL,
+  `idCliente` varchar(11) NOT NULL,
+  `idVehiculo` varchar(11) NOT NULL,
+  `tipoReserva` int(1) NOT NULL,
+  `tipoVehiculo` varchar(20) DEFAULT NULL,
+  `fechaInicio` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fechaFin` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `nocturno` tinyint(1) NOT NULL,
+  `costo` int(11) DEFAULT NULL,
+  `finalizada` tinyint(1) DEFAULT NULL,
+  `marcaPago` tinyint(1) NOT NULL,
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `reserva`
+--
+
+INSERT INTO `reserva` (`idReserva`, `idCliente`, `idVehiculo`, `tipoReserva`, `tipoVehiculo`, `fechaInicio`, `fechaFin`, `nocturno`, `costo`, `finalizada`, `marcaPago`, `estado`) VALUES
+(1, '-1', '-1', 1, NULL, '2018-12-20 17:07:56', '2018-12-20 17:07:56', 0, NULL, NULL, 1, 1),
+(2, '-1', '-1', 1, NULL, '2018-12-20 17:10:31', '2018-12-20 17:10:30', 0, NULL, NULL, 1, 0),
+(3, '56660749', 'ntd4545', 2, NULL, '2018-12-20 17:14:02', '2018-12-20 17:14:01', 0, NULL, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -163,7 +176,7 @@ ALTER TABLE `realizaReserva`
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `tipoVehiculo`
 --
