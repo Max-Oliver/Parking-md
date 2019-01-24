@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 
-public class persistenciaReserva
+public class PersistenciaReserva
 {
     private Connection connect;
     private PreparedStatement statement;
@@ -16,15 +16,14 @@ public class persistenciaReserva
         System.out.println("init persistence NewWashed");
         try
         {
-            sql = "INSERT INTO reserva(idCliente, idVehiculo, tipoReserva, fechaInicio, nocturno, marcaPago, estado) values(?, ?, ?, ?, ?, ?, ?);";
+            sql = "INSERT INTO reserva(idCliente, idVehiculo, tipoReserva, fechaInicio, nocturno, marcaPago, estado) values(?, ?, ?, ?, ?, ?);";
             statement = connDB.connect.prepareStatement(sql);
-            statement.setString(1, reservation.Document());
-            statement.setString(2, reservation.CarRegistration());
-            statement.setInt(3, 1);//type reservation 1 = onlyWashed
-            statement.setTimestamp(4, reservation.StartDate());
-            statement.setBoolean(5, reservation.isNight());
-            statement.setBoolean(6, reservation.PaymentMark());
-            statement.setBoolean(7, false);//end of reservation because is OnlyWashed
+            statement.setInt(1, reservation.ClientId());
+            statement.setInt(2, 1);//type reservation 1 = onlyWashed
+            statement.setTimestamp(3, reservation.StartDate());
+            statement.setBoolean(4, reservation.isNight());
+            statement.setBoolean(5, reservation.PaymentMark());
+            statement.setBoolean(6, false);//end of reservation because is OnlyWashed
             connDB.Insert(statement);
             System.out.println(statement.toString().split(": ")[1]);
         }
@@ -41,8 +40,8 @@ public class persistenciaReserva
         {
             sql = "INSERT INTO reserva(idCliente, idVehiculo, tipoReserva, fechaInicio, nocturno, marcaPago, estado) values(?, ?, ?, ?, ?, ?, ?);";
             statement = connDB.connect.prepareStatement(sql);
-            statement.setString(1, reservation.Document());
-            statement.setString(2, reservation.CarRegistration());
+            statement.setInt(1, reservation.ClientId());
+            statement.setInt(2, reservation.vehicleId());
             statement.setInt(3, 2);//type reservation 2 = res hour
             statement.setTimestamp(4, reservation.StartDate());
             statement.setBoolean(5, reservation.isNight());
@@ -64,9 +63,9 @@ public class persistenciaReserva
         {
             sql = "INSERT INTO reserva(idCliente, idVehiculo, tipoReserva, fechaInicio, nocturno, marcaPago, estado) values(?, ?, ?, ?, ?, ?, ?);";
             statement = connDB.connect.prepareStatement(sql);
-            statement.setString(1, reservation.Document());
-            statement.setString(2, reservation.CarRegistration());
-            statement.setInt(3, 3);//type reservation 3 = res mounth
+            statement.setInt(1, reservation.ClientId());
+            statement.setInt(2, reservation.vehicleId());
+            statement.setInt(3, 3);//type reservation 2 = res hour
             statement.setTimestamp(4, reservation.StartDate());
             statement.setBoolean(5, reservation.isNight());
             statement.setBoolean(6, reservation.PaymentMark());

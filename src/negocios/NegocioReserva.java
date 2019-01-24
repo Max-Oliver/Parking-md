@@ -1,16 +1,20 @@
 package negocios;
-import persistencias.persistenciaReserva;
+import persistencias.PersistenciaReserva;
 import entidadesCompartidas.Reserva;
 
 public class NegocioReserva
 {
-    private persistenciaReserva PersistenceRes = new persistenciaReserva();
+    private PersistenciaReserva PersistenceRes = new PersistenciaReserva();
 
     public void NewWashed(String carType)
     {
         try
         {
-            Reserva reservation = new Reserva("-1", carType, "-1", false, true);
+            /*
+            public Reserva( 
+            int clientId, int vehicleId, Boolean isNight, Boolean paymentMark)
+            *///
+            Reserva reservation = new Reserva(-1, -1, false, true);
             PersistenceRes.NewWashed(reservation);
         }
         catch (Exception e)
@@ -20,11 +24,11 @@ public class NegocioReserva
     }
     
     public void NewReservationHour(
-            String document, String carType, String carRegistration, Boolean paymentMark)
+            int clientId, int vehicleId, String carRegistration, Boolean paymentMark)
     {
         try
         {
-            Reserva reservation = new Reserva(document, carType, carRegistration, false, paymentMark);
+            Reserva reservation = new Reserva(clientId, vehicleId, false, paymentMark);
             PersistenceRes.NewReservationHour(reservation);
         }
         catch (Exception e)
@@ -34,11 +38,11 @@ public class NegocioReserva
     }
 
     public void NewReservationMounth(
-             String document, String carType, String carRegistration, Boolean isNight, Boolean paymentMark)
+             int clientId, int vehicleId, String carRegistration, Boolean isNight, Boolean paymentMark)
     {
         try
         {
-            Reserva reservation = new Reserva(document, carType, carRegistration, isNight, paymentMark);
+            Reserva reservation = new Reserva(clientId, vehicleId, isNight, paymentMark);
             PersistenceRes.NewReservationMounth(reservation);
         }
         catch (Exception e)

@@ -1,18 +1,14 @@
 package negocios;
-import persistencias.persistenciaCliente;
-import java.util.Hashtable;
-import presentacion.InputBox;
+import persistencias.PersistenciaCliente;
+import entidadesCompartidas.Cliente;
 
 public class NegocioCliente 
 {
-    persistenciaCliente persistenciaCli = new persistenciaCliente();
+    PersistenciaCliente persistenceCli = new PersistenciaCliente();
                                     
-    public void NewReservationMounth(Hashtable<String, InputBox> reservationMounthAssoc)
+    public int NewClient(String document)
     {
-        System.out.println(reservationMounthAssoc.get("document").Value());
-        System.out.println(reservationMounthAssoc.get("carType").Value());
-        System.out.println(reservationMounthAssoc.get("reservationTurn").Value());
-        System.out.println(reservationMounthAssoc.get("carRegistration").Value());
-        System.out.println(reservationMounthAssoc.get("clientName").Value());
+        Cliente client = new Cliente(document);
+        return persistenceCli.AltaCliente(client);
     }
 }

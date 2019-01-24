@@ -5,9 +5,8 @@ import java.text.SimpleDateFormat;
 
 public class Reserva 
 {
-    private String document;
-    private String carType;
-    private String carRegistration;
+    private int clientId;
+    private int vehicleId;
     private Boolean paymentMark;
     private Boolean isNight;
     private Boolean state;
@@ -15,11 +14,10 @@ public class Reserva
     
     
     public Reserva(
-            String document, String carType, String carRegistration,Boolean isNight, Boolean paymentMark)
+            int clientId, int vehicleId, Boolean isNight, Boolean paymentMark)
     {
-        this.document = document;
-        this.carType = carType;
-        this.carRegistration = carRegistration;
+        this.clientId = clientId;
+        this.vehicleId = vehicleId;
         this.isNight = isNight;
         this.paymentMark = paymentMark;
         this.state = true;
@@ -30,19 +28,14 @@ public class Reserva
         //formate date : 2004-05-20 19:01:46.593
     }
     
-    public String Document()
+    public int ClientId()
     {
-        return this.document;
+        return this.clientId;
     }
     
-    public String CarType()
+    public int vehicleId()
     {
-        return this.carType;
-    }
-    
-    public String CarRegistration()
-    {
-        return this.carRegistration;
+        return this.vehicleId;
     }
     
     public Boolean isNight()

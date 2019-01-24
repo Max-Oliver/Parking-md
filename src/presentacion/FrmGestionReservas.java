@@ -6,7 +6,7 @@ import presentacion.EventosFrmGestionReservas;
 
 import negocios.*;
 
-public class frmGestionReservas extends javax.swing.JFrame {
+public class FrmGestionReservas extends javax.swing.JFrame {
     private EventosFrmGestionReservas EventsFrame = new EventosFrmGestionReservas();
     private negocios.NegocioCliente BussinessClient = new NegocioCliente();
     private Paneles Panels = new Paneles();
@@ -15,7 +15,7 @@ public class frmGestionReservas extends javax.swing.JFrame {
     private InputBox[] reservationHour;
     private InputBox[] reservationMonth;
     
-    public frmGestionReservas() {
+    public FrmGestionReservas() {
         initComponents();
         
         InputBox carTypeBI = new InputBox(carTypeCb, carTypeErrorLBL, true);
@@ -31,10 +31,13 @@ public class frmGestionReservas extends javax.swing.JFrame {
         InputBox reservationTurnBI = new InputBox(reservationTurnRb, reservationTurnErrorLBL, true);
         InputBox paymentMarkBI2 = new InputBox(paymentMarkRb2, paymentMarkErrorLBL2, false);
         
-        carTypeBI.setValue(new String[]{"auto", "camioneta", "moto"});
-        carTypeBI1.setValue(new String[]{"auto", "camioneta", "moto"});
-        carTypeBI2.setValue(new String[]{"auto", "camioneta", "moto"});
+        //load all vehicles class
+        String[] carTypes = this.EventsFrame.GetCarTypes();
         
+        carTypeBI.setValue(carTypes);
+        carTypeBI1.setValue(carTypes);
+        carTypeBI2.setValue(carTypes);
+                
         reservationHour = new InputBox[]{carRegistrationBI1, carTypeBI1, documentBI1, paymentMarkBI1};
         reservationMonth = new InputBox[]{carRegistrationBI2, carTypeBI2, documentBI2, reservationTurnBI,paymentMarkBI2};
         onlyWashed = new InputBox[]{carTypeBI};
@@ -690,7 +693,7 @@ public class frmGestionReservas extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmGestionReservas().setVisible(true);
+                new FrmGestionReservas().setVisible(true);
             }
         });
     }

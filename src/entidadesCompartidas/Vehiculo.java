@@ -1,14 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entidadesCompartidas;
 
-/**
- *
- * @author damian
- */
-public class Vehiculo {
+public class Vehiculo 
+{
+    private int clientId;
+    private String carType;
+    private String carRegistration;
     
+    public Vehiculo(int clientId, String carType, String carRegistration)
+    {
+        this.clientId = clientId;
+        this.carType = carType;
+        this.carRegistration = carRegistration;
+    }
+    
+    public int ClientId()
+    {
+        return this.clientId;
+    }
+    
+    public String CarType()
+    {
+        return this.carType;
+    }
+    
+    public String carRegistration()
+    {
+        return this.carRegistration;
+    }
 }

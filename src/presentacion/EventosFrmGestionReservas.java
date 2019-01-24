@@ -2,10 +2,18 @@ package presentacion;
 import java.util.Hashtable;
 import presentacion.InputBox;
 import negocios.NegocioReserva;
+import negocios.NegocioCliente;
+import negocios.NegocioVehiculo;
 
 
 public class EventosFrmGestionReservas
 {
+    public String[] GetCarTypes()
+    {
+        NegocioVehiculo BussinessVehicle = new NegocioVehiculo();
+        return BussinessVehicle.GetCarTypes();
+    }
+   
     public void NewWashed(InputBox[] onlyWashed)
     {
         System.out.println("init event NewWashed");
@@ -36,7 +44,7 @@ public class EventosFrmGestionReservas
     {
         System.out.println("init event NewReservationHour");
         Paneles panels = new Paneles();
-        //oculto los mensajes de error y valido los campos requeridos
+        //hide the error messages and validate the textboxs
         panels.hideErrors(reservationHour);
         if (panels.ValidateInputBoxs(reservationHour)) 
         {
@@ -55,8 +63,17 @@ public class EventosFrmGestionReservas
                 document        = ((String)reservationHour[2].Value());
                 paymentMark     = ((Boolean)reservationHour[3].Value());
             
+                //NewClient
+                NegocioCliente BussinessClient = new NegocioCliente();
+                int clientId = BussinessClient.NewClient(document);
+                //NewCar
+                NegocioVehiculo BussinessVehicle = new NegocioVehiculo();
+                int vehicleId = BussinessVehicle.NewVehicle(clientId, carType, carRegistration);
+                //NewReservation             
                 BussinessReservation.NewReservationHour(
-                        document, carType, carRegistration, paymentMark);    
+                        clientId, vehicleId, carRegistration, paymentMark);
+                //New
+                
             } 
             catch (Exception e) 
             {
@@ -91,9 +108,13 @@ public class EventosFrmGestionReservas
                 isNight         = ((Boolean)reservationMounth[3].Value());
                 paymentMark     = ((Boolean)reservationMounth[4].Value());
             
+                //NewClient
+                NegocioCliente BussinessClient = new NegocioCliente();
+                int clientId = BussinessClient.NewClient(document);
+                //NewReservation
                 BussinessReservation.NewReservationMounth(
-                        document, carType, carRegistration, isNight, paymentMark);    
-            } 
+                        clientId, -2, carRegistration, isNight, paymentMark);    
+            }            //arregler el -2
             catch (Exception e) 
             {
                 System.err.println("Error detected - " + e.getMessage());

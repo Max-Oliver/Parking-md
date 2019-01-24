@@ -52,20 +52,24 @@ public class Conexion
         }
     }
     
-    public void Select(String sql) 
+    public ResultSet Select(String sql) 
     {
+        //Array data = null;
+        ResultSet rs = null;
+        
+        System.out.println("===========================");
         try 
         {
             Conexion conn = new Conexion();
-            PreparedStatement PS;
-            PS = conn.getConnection().prepareStatement(sql);
-            PS.executeUpdate();
-            PS.close();
+            Statement stmt = conn.connect.createStatement();
+            rs = stmt.executeQuery(sql);
         } 
         catch (Exception e) 
         {
-            System.out.println("Select error - "+e.getMessage());
+            System.err.println("Select error - "+e.getMessage());
         }
+        System.out.println("===========================");
+        return rs;
     }
 
 }
