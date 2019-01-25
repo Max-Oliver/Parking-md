@@ -16,14 +16,13 @@ public class PersistenciaReserva
         System.out.println("init persistence NewWashed");
         try
         {
-            sql = "INSERT INTO reserva(idCliente, idVehiculo, tipoReserva, fechaInicio, nocturno, marcaPago, estado) values(?, ?, ?, ?, ?, ?);";
+            sql = "INSERT INTO reserva(idCliente, idVehiculo, tipoReserva, fechaInicio, estado) values(?, ?, ?, ?, ?);";
             statement = connDB.connect.prepareStatement(sql);
-            statement.setInt(1, reservation.ClientId());
-            statement.setInt(2, 1);//type reservation 1 = onlyWashed
-            statement.setTimestamp(3, reservation.StartDate());
-            statement.setBoolean(4, reservation.isNight());
-            statement.setBoolean(5, reservation.PaymentMark());
-            statement.setBoolean(6, false);//end of reservation because is OnlyWashed
+            statement.setInt(1, -1);
+            statement.setInt(2, reservation.vehicleId());
+            statement.setInt(3, 1);//type reservation 1 = onlyWashed
+            statement.setTimestamp(4, reservation.StartDate());
+            statement.setBoolean(5, false);//end of reservation because is OnlyWashed
             connDB.Insert(statement);
             System.out.println(statement.toString().split(": ")[1]);
         }

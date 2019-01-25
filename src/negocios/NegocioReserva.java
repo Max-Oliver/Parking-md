@@ -6,15 +6,13 @@ public class NegocioReserva
 {
     private PersistenciaReserva PersistenceRes = new PersistenciaReserva();
 
-    public void NewWashed(String carType)
+    public void NewWashed(int vehicleId)
     {
         try
         {
-            /*
-            public Reserva( 
-            int clientId, int vehicleId, Boolean isNight, Boolean paymentMark)
-            *///
-            Reserva reservation = new Reserva(-1, -1, false, true);
+            //Reserva(int clientId, int vehicleId, Boolean isNight, Boolean paymentMark)
+            //isNigth and paymentmark are no used in PersistenceReservation
+            Reserva reservation = new Reserva(-1, vehicleId, false, true);
             PersistenceRes.NewWashed(reservation);
         }
         catch (Exception e)
@@ -24,7 +22,7 @@ public class NegocioReserva
     }
     
     public void NewReservationHour(
-            int clientId, int vehicleId, String carRegistration, Boolean paymentMark)
+            int clientId, int vehicleId, Boolean paymentMark)
     {
         try
         {
@@ -38,7 +36,7 @@ public class NegocioReserva
     }
 
     public void NewReservationMounth(
-             int clientId, int vehicleId, String carRegistration, Boolean isNight, Boolean paymentMark)
+             int clientId, int vehicleId, Boolean isNight, Boolean paymentMark)
     {
         try
         {

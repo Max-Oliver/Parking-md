@@ -31,7 +31,11 @@ public class EventosFrmGestionReservas
             {  
                 carType = ((String)onlyWashed[0].Value());
                 
-                BussinessReservation.NewWashed(carType);    
+                //NewCar
+                NegocioVehiculo BussinessVehicle = new NegocioVehiculo();
+                int vehicleId = BussinessVehicle.NewVehicle(-1, carType, "no");
+                
+                BussinessReservation.NewWashed(vehicleId);    
             } 
             catch (Exception e) 
             {
@@ -70,10 +74,7 @@ public class EventosFrmGestionReservas
                 NegocioVehiculo BussinessVehicle = new NegocioVehiculo();
                 int vehicleId = BussinessVehicle.NewVehicle(clientId, carType, carRegistration);
                 //NewReservation             
-                BussinessReservation.NewReservationHour(
-                        clientId, vehicleId, carRegistration, paymentMark);
-                //New
-                
+                BussinessReservation.NewReservationHour(clientId, vehicleId, paymentMark);
             } 
             catch (Exception e) 
             {
@@ -81,7 +82,6 @@ public class EventosFrmGestionReservas
             }
         }
     }
-    
     
     public void NewReservationMounth(InputBox[] reservationMounth)
     {
@@ -111,10 +111,12 @@ public class EventosFrmGestionReservas
                 //NewClient
                 NegocioCliente BussinessClient = new NegocioCliente();
                 int clientId = BussinessClient.NewClient(document);
+                //NewCar
+                NegocioVehiculo BussinessVehicle = new NegocioVehiculo();
+                int vehicleId = BussinessVehicle.NewVehicle(clientId, carType, carRegistration);
                 //NewReservation
-                BussinessReservation.NewReservationMounth(
-                        clientId, -2, carRegistration, isNight, paymentMark);    
-            }            //arregler el -2
+                BussinessReservation.NewReservationMounth(clientId, vehicleId, isNight, paymentMark);    
+            }           
             catch (Exception e) 
             {
                 System.err.println("Error detected - " + e.getMessage());

@@ -9,8 +9,7 @@ public class PersistenciaVehiculo
     private Connection connect;
     private PreparedStatement statement;
     private Conexion connDB = new Conexion();
-    private String sql = "";
-    
+    private String sql = "";    
     public String[] GetCarTypes()
     {
         String vehicles = "";

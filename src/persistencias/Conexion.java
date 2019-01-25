@@ -54,7 +54,6 @@ public class Conexion
     
     public ResultSet Select(String sql) 
     {
-        //Array data = null;
         ResultSet rs = null;
         
         System.out.println("===========================");
@@ -71,5 +70,4 @@ public class Conexion
         System.out.println("===========================");
         return rs;
     }
-
 }
